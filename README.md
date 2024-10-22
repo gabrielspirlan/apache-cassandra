@@ -2,9 +2,24 @@
 
 - Gabriel Resende Spirlandelli
 - 3° Semestre - Desenvolvimento de Software Multiplataforma
+- Desenvolvido com Apache Cassandra através do Astra Datastax
 
 
-## Criação da column family Carros
+## Descrição do trabalho:
+1. Crie uma column family "carros" com os seguintes campos: marca(text), placa(text), modelo(text), cor(text), combustivel(set<text>), ano_fabric(int) e preco(decimal). Na chave primária, marca deve ser configurado como partition key e a placa como clustering key.
+
+2. Faça oito inserções na column family. Ao terminar, tire um print da tela exibindo as linhas inseridas.
+
+3. Faça três atualizações na tabela. Pelo menos uma delas deve contemplar uma alteração de combustível.
+
+4. Exclua um dos registros.
+
+5. Tire um print da tela mostrando as linhas da column family em seu estado atual.
+
+
+## Comandos executados
+
+### Criação da column family Carros
 create table fatec.carros (
     id uuid,
     marca text,
@@ -18,7 +33,7 @@ create table fatec.carros (
 );
 
 
-## Inserções
+### Inserções
 insert into fatec.carros (id, marca, placa, modelo, cor, combustivel, ano_fabric, preco) values 
 (uuid(), 'Toyota', 'ABC-1234', 'Corolla', 'Preto', {'Gasolina'}, 2020, 90000);
 
@@ -45,7 +60,7 @@ insert into fatec.carros (id, marca, placa, modelo, cor, combustivel, ano_fabric
 
 
 
-## Atualizações
+### Atualizações
 update fatec.carros
 set combustivel = combustivel + {'Alcool'}
 where placa = 'ABC-1234' and marca = 'Toyota';
@@ -60,7 +75,7 @@ where placa = 'JKL-4567' and marca = 'Volkswagen';
 
 
 
-## Exclusão de um registro
+### Exclusão de um registro
 delete from fatec.carros 
 where placa = 'GHI-3456' and marca = 'Chevrolet';
 
